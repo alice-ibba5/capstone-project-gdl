@@ -2,8 +2,22 @@ import express from "express";
 import apiRouter from "./apiRouter.js";
 import mongoose from "mongoose";
 import list from "express-list-endpoints";
+import cors from "cors";
 
 const server = express();
+
+const whitelist = ["http://localhost:3000", "http://localhost:3330"];
+const corsOptions = {
+  origin: function (origin, next) {
+    if (whitelist.includes(origin) || !origin) {
+      next(null, true);
+    } else {
+      next(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
+server.use(cors(corsOptions));
 
 server.use(express.json());
 
