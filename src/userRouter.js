@@ -6,8 +6,34 @@ import cloudinaryUploader from "./configuration/confUser.js";
 import { v2 as cloudinary } from "cloudinary";
 import checkJwt from "./middlewares/jwt.js";
 import jwt from "jsonwebtoken";
+import passport from "passport";
 
 const userRouter = express.Router();
+
+userRouter.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+    prompt: "select_account",
+  })
+);
+
+userRouter.get(
+  "/google-callback",
+  passport.authenticate("google", {
+    failureRedirect: "/",
+    session: false,
+  }),
+  async (req, res) => {
+    const payload = { id: req.user.id };
+
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    res.redirect(`http://localhost:3000?token=${token}&userId=${req.user._id}`);
+  }
+);
 
 userRouter.get("/", async (req, res, next) => {
   //ritorna tutti gli utenti
