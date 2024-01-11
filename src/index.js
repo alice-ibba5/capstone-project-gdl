@@ -3,6 +3,9 @@ import apiRouter from "./apiRouter.js";
 import mongoose from "mongoose";
 import list from "express-list-endpoints";
 import cors from "cors";
+import googleStrategy from "./middlewares/google.js";
+import { genericError } from "./middlewares/genericError.js";
+import passport from "passport";
 
 const server = express();
 
@@ -24,6 +27,10 @@ server.use(express.json());
 const port = 3330;
 
 server.use("/api", apiRouter);
+
+server.use(genericError);
+
+passport.use(googleStrategy);
 
 mongoose
   .connect(process.env.MONGO_URL)
