@@ -19,20 +19,20 @@ userRouter.get("/", async (req, res, next) => {
   }
 });
 
-userRouter.get("/:id", async (req, res, next) => {
+userRouter.get("/:id", checkJwt, async (req, res) => {
   //ritorna un utente specifico autenticato
-  try {
+  /* try {
     const { id } = req.params;
     const user = await User.findById(id);
 
     if (!user) {
       return res.status(404).send();
-    }
+    }*/
 
-    res.status(200).json(req.user);
-  } catch (error) {
+  res.status(200).json(req.user);
+  /*} catch (error)  {
     next(error);
-  }
+  }*/
 });
 
 userRouter.post("/", async (req, res, next) => {
