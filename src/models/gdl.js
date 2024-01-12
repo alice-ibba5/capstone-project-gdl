@@ -1,6 +1,11 @@
 import mongoose, { Schema } from "mongoose";
 
 const GdlSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "users",
+    required: true,
+  },
   category: {
     type: String,
     required: true,
@@ -36,4 +41,4 @@ const GdlSchema = new Schema({
   },
 });
 
-export const gdl = mongoose.model("gdl", GdlSchema);
+export const GDL = mongoose.model("gdl", GdlSchema);

@@ -90,7 +90,7 @@ userRouter.post("/session", async (req, res, next) => {
     return res.status(404).json({ message: "User not found" });
   }
 
-  const isPasswordCorrect = bcrypt.compare(password, user.password);
+  const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
   if (!isPasswordCorrect) {
     return res.status(401).json({ message: "Invalid credentials" });
