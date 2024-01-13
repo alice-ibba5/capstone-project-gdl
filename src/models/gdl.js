@@ -18,6 +18,10 @@ const GdlSchema = new Schema({
     type: String,
     required: true,
   },
+  bookPlot: {
+    type: String,
+    required: true,
+  },
   readTime: {
     value: {
       type: Number,
@@ -42,3 +46,18 @@ const GdlSchema = new Schema({
 });
 
 export const GDL = mongoose.model("gdl", GdlSchema);
+
+/*
+{
+  "user": "659ed8a5475f60c3f58d73ae",
+  "category": "Historical Fiction",
+  "bookTitle": "Memorie di una geisha",
+  "bookAuthor": "Arthur Golden",
+  "readTime": {
+    "value": 24,
+    "unit": "hours"
+  },
+  "pages": 574,
+  "deadline": "31/03/2024"
+}
+*/
