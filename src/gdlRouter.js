@@ -1,6 +1,7 @@
 import express from "express";
 import { GDL } from "./models/gdl.js";
 import { Comment } from "./models/comments.js";
+import { Event } from "./models/events.js";
 import { genericError } from "./middlewares/genericError.js";
 import uploadFile from "../src/configuration/confGdl.js";
 import path from "path";
@@ -41,7 +42,7 @@ gdlRouter.get("/:id/comments", async (req, res, next) => {
   try {
     const comments = await Comment.find({ gdl: req.params.id }).populate(
       "user",
-      "-_id name surname avatar"
+      "_id name surname avatar"
     );
 
     if (!comments) {
@@ -54,13 +55,31 @@ gdlRouter.get("/:id/comments", async (req, res, next) => {
   }
 });
 
+gdlRouter.get("/:id/events", async (req, res, next) => {
+  //ritorna tutti gli eventi di un gdl specifico
+  try {
+    const events = await Event.find({ gdl: req.params.id }).populate(
+      "user",
+      "-_id name surname avatar"
+    );
+
+    if (!events) {
+      return res.status(404).send();
+    }
+    res.json(events);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
 gdlRouter.get("/:id/comments/:commentId", async (req, res, next) => {
   //ritorna un commento specifico di un gdl specifico
   try {
     const { commentId } = req.params;
     const comment = await Comment.findById(commentId).populate(
       "user",
-      "-_id name surname avatar"
+      "_id name surname avatar"
     );
 
     if (!comment) {
@@ -68,6 +87,25 @@ gdlRouter.get("/:id/comments/:commentId", async (req, res, next) => {
     }
 
     res.json(comment);
+  } catch (error) {
+    next(error);
+  }
+});
+
+gdlRouter.get("/:id/events/:eventId", async (req, res, next) => {
+  //ritorna un evento specifico di un gdl specifico
+  try {
+    const { eventId } = req.params;
+    const event = await Event.findById(eventId).populate(
+      "user",
+      "-_id name surname avatar"
+    );
+
+    if (!event) {
+      return res.status(404).send();
+    }
+
+    res.json(event);
   } catch (error) {
     next(error);
   }
@@ -95,6 +133,20 @@ gdlRouter.post("/:id", async (req, res, next) => {
     await newComment.save();
 
     res.status(201).json(newComment);
+  } catch (error) {
+    error.statusCode = 400;
+    next(error);
+  }
+});
+
+gdlRouter.post("/:id", async (req, res, next) => {
+  //aggiunge un nuovo evento ad un gdl specifico
+  try {
+    const newEvent = new Event(req.body);
+
+    await newEvent.save();
+
+    res.status(201).json(newEvent);
   } catch (error) {
     error.statusCode = 400;
     next(error);
@@ -129,6 +181,22 @@ gdlRouter.put("/:id/comments/:commentId", async (req, res, next) => {
   }
 });
 
+gdlRouter.put("/:id/events/:eventId", async (req, res, next) => {
+  //modifica un evento ad un gdl specifico
+  try {
+    const updatedEvent = await Event.findByIdAndUpdate(
+      req.params.eventId,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    res.json(updatedEvent);
+  } catch (error) {
+    next(error);
+  }
+});
+
 gdlRouter.delete("/:id", async (req, res, next) => {
   //elimina un blog post specifico
   try {
@@ -152,6 +220,21 @@ gdlRouter.delete("/:id/comments/:commentId", async (req, res, next) => {
     );
 
     if (!deletedComment) {
+      res.status(404).send();
+    } else {
+      res.status(204).send();
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+gdlRouter.delete("/:id/events/:eventId", async (req, res, next) => {
+  //elimina un evento ad un gdl specifico
+  try {
+    const deletedEvent = await Event.findByIdAndDelete(req.params.eventId);
+
+    if (!deletedEvent) {
       res.status(404).send();
     } else {
       res.status(204).send();
