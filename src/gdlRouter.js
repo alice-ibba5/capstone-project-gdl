@@ -139,7 +139,7 @@ gdlRouter.post("/:id", async (req, res, next) => {
   }
 });
 
-gdlRouter.post("/:id", async (req, res, next) => {
+gdlRouter.post("/:id/events", async (req, res, next) => {
   //aggiunge un nuovo evento ad un gdl specifico
   try {
     const newEvent = new Event(req.body);

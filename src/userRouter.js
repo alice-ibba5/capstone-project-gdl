@@ -108,10 +108,12 @@ userRouter.delete("/session", async (req, res) => {});
 
 userRouter.post("/checkUserExistence", async (req, res) => {
   try {
-    const { userEmail } = req.body;
+    const { email } = req.body;
+    console.log("User Email:", email);
 
     // Cerca l'utente nel database usando il campo email
-    const existingUser = await User.findOne({ email: userEmail });
+    const existingUser = await User.findOne({ email: email });
+    console.log("Existing User:", existingUser);
 
     // Invia la risposta al client indicando se l'utente esiste o meno
     res.json({ userExists: !!existingUser });

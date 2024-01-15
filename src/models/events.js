@@ -6,12 +6,12 @@ const EventSchema = new Schema({
     ref: "gdl",
     required: true,
   },
-  name: {
+  title: {
     type: String,
     required: true,
   },
   date: {
-    type: String,
+    type: Date,
     required: true,
   },
   user: {

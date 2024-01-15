@@ -22,7 +22,17 @@ emailRouter.post("/", async (req, res) => {
     let sendSmtpEmail = new brevo.SendSmtpEmail();
     sendSmtpEmail.subject = "Email di benvenuto";
 
-    sendSmtpEmail.htmlContent = `<html><body><h1>Email di benvenuto a ${user.name} ${user.surname}</h1></body></html>`;
+    sendSmtpEmail.htmlContent = `<html>
+    <body>
+    <h1 class="font-face-CinzelDecorative">Email di benvenuto a ${user.name} ${user.surname}</h1>
+    <p>BenvenutO su ✨GDLove🔮 - il luogo ideale per gli amanti dei libri che
+       desiderano connettersi, esplorare nuove letture e partecipare a
+       entusiasmanti discussioni letterarie. Siamo un team appassionato
+       di lettori e sviluppatori che si sono uniti per creare
+       un'esperienza coinvolgente e interattiva per tutti coloro che
+       amano immergersi nel mondo della letteratura.</p>
+    </body>
+    </html>`;
     sendSmtpEmail.sender = {
       name: "GDLove",
       email: "GDLove@gmail.com",
