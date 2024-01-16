@@ -1,5 +1,6 @@
 import express from "express";
 import { User } from "./models/users.js";
+import { Event } from "./models/events.js";
 import { genericError } from "./middlewares/genericError.js";
 import bcrypt from "bcrypt";
 import cloudinaryUploader from "./configuration/confUser.js";

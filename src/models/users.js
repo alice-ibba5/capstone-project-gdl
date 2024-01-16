@@ -32,6 +32,10 @@ const UserSchema = new Schema({
       return this.password ? false : true;
     },
   },
+  eventId: {
+    type: [Schema.Types.ObjectId],
+    ref: "events",
+  },
 });
 
 export const User = mongoose.model("users", UserSchema);
