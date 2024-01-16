@@ -46,20 +46,22 @@ userRouter.get("/", async (req, res, next) => {
   }
 });
 
-userRouter.get("/:id", checkJwt, async (req, res) => {
+userRouter.get("/:id", async (req, res, next) => {
   //ritorna un utente specifico autenticato
-  /* try {
-    const { id } = req.params;
-    const user = await User.findById(id);
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
 
-    if (!user) {
-      return res.status(404).send();
-    }*/
-
-  res.status(200).json(req.user);
-  /*} catch (error)  {
+    req.user = await User.findById(payload.id)
+      .select("-password")
+      .populate("eventId gdlId");
+    res.json(req.user);
+    if (!req.user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
     next(error);
-  }*/
+  }
 });
 
 userRouter.post("/", async (req, res, next) => {
