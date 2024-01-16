@@ -35,12 +35,12 @@ emailRouter.post("/", async (req, res) => {
     </html>`;
     sendSmtpEmail.sender = {
       name: "GDLove",
-      email: "GDLove@gmail.com",
+      email: "gdlove.wordsforthesoul@gmail.com",
     };
     sendSmtpEmail.to = [{ email: email, name: `${user.name} ${user.surname}` }];
     sendSmtpEmail.replyTo = {
-      name: "Alice",
-      email: "alice.ibba5@gmail.com",
+      name: "GDLove",
+      email: "gdlove.wordsforthesoul@gmail.com",
     };
 
     sendSmtpEmail.headers = { "Some-Custom-Name": "unique-id-1234" };
@@ -62,4 +62,5 @@ emailRouter.post("/", async (req, res) => {
     res.status(500).send("Error sending welcome email: " + error.message);
   }
 });
+
 export default emailRouter;

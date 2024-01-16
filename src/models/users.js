@@ -36,6 +36,10 @@ const UserSchema = new Schema({
     type: [Schema.Types.ObjectId],
     ref: "events",
   },
+  gdlId: {
+    type: [Schema.Types.ObjectId],
+    ref: "gdl",
+  },
 });
 
 export const User = mongoose.model("users", UserSchema);
