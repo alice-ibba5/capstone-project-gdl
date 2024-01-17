@@ -43,6 +43,10 @@ const GdlSchema = new Schema({
   cover: {
     type: String,
   },
+  userId: {
+    type: [Schema.Types.ObjectId],
+    ref: "users",
+  },
 });
 
 export const GDL = mongoose.model("gdl", GdlSchema);

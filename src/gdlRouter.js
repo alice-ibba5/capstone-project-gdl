@@ -23,8 +23,8 @@ gdlRouter.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const gdl = await GDL.findById(id).populate(
-      "user",
-      "-_id name surname avatar"
+      "user userId",
+      "_id name surname avatar"
     );
 
     if (!gdl) {
