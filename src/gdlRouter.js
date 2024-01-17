@@ -59,8 +59,7 @@ gdlRouter.get("/:id/events", async (req, res, next) => {
   //ritorna tutti gli eventi di un gdl specifico
   try {
     const events = await Event.find({ gdl: req.params.id }).populate(
-      "user",
-      "-_id name surname avatar"
+      "user gdl"
     );
 
     if (!events) {
@@ -96,10 +95,7 @@ gdlRouter.get("/:id/events/:eventId", async (req, res, next) => {
   //ritorna un evento specifico di un gdl specifico
   try {
     const { eventId } = req.params;
-    const event = await Event.findById(eventId).populate(
-      "user",
-      "-_id name surname avatar"
-    );
+    const event = await Event.findById(eventId).populate("user gdl");
 
     if (!event) {
       return res.status(404).send();

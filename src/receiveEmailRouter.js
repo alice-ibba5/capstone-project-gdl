@@ -20,7 +20,7 @@ receiveEmailRouter.post("/", async (req, res, next) => {
 
     await newEmail.save();
 
-    res.status(201).json(newGdl);
+    res.status(201).json(newEmail);
   } catch (error) {
     error.statusCode = 400;
     next(error);
