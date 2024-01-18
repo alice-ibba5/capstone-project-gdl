@@ -14,6 +14,7 @@ const whitelist = [
   "http://localhost:3330",
   "https://accounts.google.com/o/oauth2/auth",
   "https://capstone-project-gdl-backend.onrender.com",
+  "https://capstone-project-gdl-backend.onrender.com/api/users",
   "https://capstone-project-gdl-backend.onrender.com/api/users/google",
   "https://capstone-project-gdl-backend.onrender.com/api/users/google-callback",
   "https://gdlove.netlify.app/",
