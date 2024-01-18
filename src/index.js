@@ -9,7 +9,13 @@ import passport from "passport";
 
 const server = express();
 
-const whitelist = ["http://localhost:3000", "http://localhost:3330"];
+const whitelist = [
+  "http://localhost:3000",
+  "http://localhost:3330",
+  "https://accounts.google.com/o/oauth2/auth",
+  "https://capstone-project-gdl-backend.onrender.com/api/users/google",
+  "https://gdlove.netlify.app/",
+];
 const corsOptions = {
   origin: function (origin, next) {
     if (whitelist.includes(origin) || !origin) {
