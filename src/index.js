@@ -17,7 +17,7 @@ const whitelist = [
   "https://capstone-project-gdl-backend.onrender.com/api/users",
   "https://capstone-project-gdl-backend.onrender.com/api/users/google",
   "https://capstone-project-gdl-backend.onrender.com/api/users/google-callback",
-  "https://gdlove.netlify.app/",
+  "https://gdlove.netlify.app",
 ];
 const corsOptions = {
   origin: function (origin, next) {
