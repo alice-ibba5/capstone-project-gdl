@@ -15,7 +15,8 @@ const googleStrategy = new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3330/api/users/google-callback",
+    callbackURL:
+      "https://capstone-project-gdl-backend.onrender.com/api/users/google-callback",
   },
   async function (_, __, profile, cb) {
     console.log(profile);

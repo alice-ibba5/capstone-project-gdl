@@ -32,7 +32,9 @@ userRouter.get(
       expiresIn: "1h",
     });
 
-    res.redirect(`http://localhost:3000?token=${token}&userId=${req.user._id}`);
+    res.redirect(
+      `https://gdlove.netlify.app/?token=${token}&userId=${req.user._id}`
+    );
   }
 );
 
