@@ -33,7 +33,7 @@ userRouter.get(
     });
 
     res.redirect(
-      `https://gdlove.netlify.app/?token=${token}&userId=${req.user._id}`
+      `https://capstone-project-gdl-backend.onrender.com?token=${token}&userId=${req.user._id}`
     );
   }
 );
