@@ -40,6 +40,10 @@ const UserSchema = new Schema({
     type: [Schema.Types.ObjectId],
     ref: "gdl",
   },
+  friendId: {
+    type: [Schema.Types.ObjectId],
+    ref: "users",
+  },
 });
 
 export const User = mongoose.model("users", UserSchema);
