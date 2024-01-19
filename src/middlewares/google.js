@@ -2,19 +2,6 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { User } from "../models/users.js";
 import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
-  // Configura le tue credenziali per l'invio di email
-  service: "gmail",
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASSWORD,
-  },
-  tls: {
-    rejectUnauthorized: false,
-  },
-});
-
 const googleStrategy = new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -34,6 +21,19 @@ const googleStrategy = new GoogleStrategy(
         surname: profile.name.familyName,
         email: profile.emails[0].value,
         avatar: profile.photos[0].value,
+      });
+
+      const transporter = nodemailer.createTransport({
+        // Configura le tue credenziali per l'invio di email
+        service: "gmail",
+        secure: false,
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASSWORD,
+        },
+        tls: {
+          rejectUnauthorized: false,
+        },
       });
 
       // Invia l'email di benvenuto
