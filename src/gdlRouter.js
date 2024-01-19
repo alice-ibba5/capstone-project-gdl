@@ -2,6 +2,7 @@ import express from "express";
 import { GDL } from "./models/gdl.js";
 import { Comment } from "./models/comments.js";
 import { Event } from "./models/events.js";
+import { User } from "./models/users.js";
 import { genericError } from "./middlewares/genericError.js";
 import uploadFile from "../src/configuration/confGdl.js";
 import path from "path";
@@ -102,6 +103,37 @@ gdlRouter.get("/:id/events/:eventId", async (req, res, next) => {
     }
 
     res.json(event);
+  } catch (error) {
+    next(error);
+  }
+});
+
+gdlRouter.get("/:id/users", async (req, res, next) => {
+  //ritorna tutti gli utenti di un gdl specifico
+  try {
+    const users = await User.find({ gdl: req.params.id }).populate("userId");
+
+    if (!users) {
+      return res.status(404).send();
+    }
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+gdlRouter.get("/:id/users/:userId", async (req, res, next) => {
+  //ritorna un utente specifico di un gdl specifico
+  try {
+    const { userId } = req.params;
+    const user = await User.findById(userId).populate("userId");
+
+    if (!user) {
+      return res.status(404).send();
+    }
+
+    res.json(user);
   } catch (error) {
     next(error);
   }
