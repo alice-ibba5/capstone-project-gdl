@@ -23,7 +23,7 @@ googleEmailRouter.use(bodyParser.urlencoded({ extended: true }));
 googleEmailRouter.use(bodyParser.json());
 
 // Gestisci la richiesta POST
-googleEmailRouter.post("/", googleStrategy, async (req, res) => {
+googleEmailRouter.post("/", async (req, res) => {
   console.log("Richiesta POST ricevuta");
   // Estrai i dati dalla richiesta POST
   const { name, surname, email } = req.body;
