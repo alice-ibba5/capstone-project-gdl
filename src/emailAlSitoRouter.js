@@ -32,7 +32,7 @@ emailAlSitoRouter.post("/", (req, res) => {
     from: `${email}`,
     to: process.env.EMAIL_USER, // Sostituisci con l'indirizzo email del destinatario desiderato
     subject: "Nuova email dal sito",
-    text: `Messaggio da ${name} ${surname} ${message}`,
+    text: `Messaggio da ${name} ${surname}. ${message}`,
   };
 
   // Invia l'email

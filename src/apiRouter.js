@@ -5,6 +5,7 @@ import gdlRouter from "./gdlRouter.js";
 import emailContattiRouter from "./emailContattiRouter.js";
 import receiveEmailRouter from "./receiveEmailRouter.js";
 import emailAlSitoRouter from "./emailAlSitoRouter.js";
+import googleEmailRouter from "./googleEmailRouter.js";
 import cors from "cors";
 
 const apiRouter = express.Router();
@@ -19,5 +20,6 @@ apiRouter.use("/contattiEmail", emailContattiRouter);
 apiRouter.use("/gdl", gdlRouter);
 apiRouter.use("/receiveEmail", receiveEmailRouter);
 apiRouter.use("/emailAlSito", emailAlSitoRouter);
+apiRouter.use("/googleEmail", googleEmailRouter);
 
 export default apiRouter;
