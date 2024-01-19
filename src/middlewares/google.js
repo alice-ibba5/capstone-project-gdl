@@ -23,7 +23,7 @@ const googleStrategy = new GoogleStrategy(
         avatar: profile.photos[0].value,
       });
 
-      /*const transporter = nodemailer.createTransport({
+      const transporter = nodemailer.createTransport({
         // Configura le tue credenziali per l'invio di email
         service: "gmail",
         secure: false,
@@ -56,7 +56,7 @@ const googleStrategy = new GoogleStrategy(
         } else {
           console.log("Email di benvenuto inviata: " + info.response);
         }
-      });*/
+      });
     }
 
     cb(null, user);
