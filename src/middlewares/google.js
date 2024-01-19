@@ -24,6 +24,18 @@ const googleStrategy = new GoogleStrategy(
         avatar: profile.photos[0].value,
       });
     }
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      secure: false,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
     // Invia l'email di benvenuto
     try {
       const mailOptions = {
