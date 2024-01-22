@@ -44,6 +44,10 @@ const UserSchema = new Schema({
     type: [Schema.Types.ObjectId],
     ref: "users",
   },
+  gdSeriesId: {
+    type: [Schema.Types.ObjectId],
+    ref: "gdSeries",
+  },
 });
 
 export const User = mongoose.model("users", UserSchema);

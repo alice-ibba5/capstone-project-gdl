@@ -53,7 +53,7 @@ userRouter.get("/me/:id", async (req, res, next) => {
 
     req.user = await User.findById(payload.id)
       .select("-password")
-      .populate("eventId gdlId friendId");
+      .populate("eventId gdlId friendId gdSeriesId");
     res.json(req.user);
     if (!req.user) {
       return res.status(404).json({ message: "User not found" });
@@ -70,7 +70,7 @@ userRouter.get("/:id", async (req, res, next) => {
 
     req.user = await User.findById(id)
       .select("-password")
-      .populate("eventId gdlId friendId");
+      .populate("eventId gdlId friendId gdSeriesId");
     res.json(req.user);
     if (!req.user) {
       return res.status(404).json({ message: "User not found" });
