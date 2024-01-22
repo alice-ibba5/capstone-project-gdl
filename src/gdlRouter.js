@@ -226,7 +226,7 @@ gdlRouter.put("/:id/events/:eventId", async (req, res, next) => {
 });
 
 gdlRouter.delete("/:id", async (req, res, next) => {
-  //elimina un blog post specifico
+  //elimina un gdl specifico
   try {
     const deletedGdl = await GDL.findByIdAndDelete(req.params.id);
 
