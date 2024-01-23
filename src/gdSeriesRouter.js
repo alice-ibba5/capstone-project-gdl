@@ -24,7 +24,7 @@ gdSeriesRouter.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const gdSeries = await GDSeries.findById(id).populate(
-      "user userId books",
+      "user booksId userId",
       "_id name surname avatar"
     );
 

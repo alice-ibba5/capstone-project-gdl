@@ -14,7 +14,7 @@ const GdSeriesSchema = new Schema({
     type: String,
     required: true,
   },
-  books: {
+  booksId: {
     type: [Schema.Types.ObjectId],
     ref: "gdl",
     required: true,
