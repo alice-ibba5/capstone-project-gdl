@@ -70,6 +70,6 @@ server.get("/carica-modello2", (req, res) => {
 
 server.get("/carica-modello3", (req, res) => {
   res.header("Content-Type", "model/gltf-binary");
-  const filePath = path.resolve("./public/solo-libri.glb");
+  const filePath = path.resolve("./public/solo-libri-colorati.glb");
   res.sendFile(filePath);
 });
